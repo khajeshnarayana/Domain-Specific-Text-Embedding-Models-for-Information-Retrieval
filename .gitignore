@@ -1,0 +1,25 @@
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+
+# Data (keep the folder structure, ignore actual data files)
+data/*.xlsx
+data/*.csv
+!data/.gitkeep
+
+# Model checkpoints and weights (usually too large for git)
+models/*
+!models/.gitkeep
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
