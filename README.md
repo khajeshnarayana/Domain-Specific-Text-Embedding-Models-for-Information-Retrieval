@@ -33,7 +33,6 @@ domain-specific-text-embedding-models/
 │   ├── fine_tune.py             # Fine-tunes the base model on triplet data
 │   └── evaluate_models.py       # Compares base vs. fine-tuned model
 ├── data/                          # Train/eval triplet .xlsx files live here
-├── models/                        # Fine-tuned checkpoints and final model saved here
 ├── requirements.txt
 └── README.md
 ```
