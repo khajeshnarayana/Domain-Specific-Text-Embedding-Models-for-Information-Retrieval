@@ -24,6 +24,10 @@ that specific notion of similarity directly.
 
 ```
 domain-specific-text-embedding-models/
+├── PAPER/                         # Research paper source files (NeurIPS LaTeX manuscript)
+│   ├── checklist.tex              # NeurIPS reproducibility checklist
+│   ├── main.tex                   # Main research paper LaTeX source
+│   └── neurips_2026.sty           # Official NeurIPS 2026 LaTeX style file
 ├── src/
 │   ├── generate_sample_data.py  # Creates a small synthetic dataset to test the pipeline
 │   ├── fine_tune.py             # Fine-tunes the base model on triplet data
