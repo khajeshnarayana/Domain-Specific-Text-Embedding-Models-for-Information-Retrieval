@@ -1,8 +1,9 @@
 \documentclass{article}
 
-% "preprint" option: no line numbers, no double-blind anonymization.
+% "final" option: no line numbers, no double-blind anonymization, and no
+% "Preprint." footer text.
 \usepackage[final]{neurips_2026}
-\usepackage{fancyhdr}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
@@ -26,17 +27,14 @@
 
 \author{%
   S Khajesh Narayana, R Srivardhani, Kishore Reddy Konda \\
+  Sodhana \\
   \texttt{khajeshn@gmail.com, srivardhani.r@nexusiqsolutions.com, kishore.konda@sodhana.ai}
 }
-\fancypagestyle{firstpage}{
-    \fancyhf{}
-    \fancyfoot[C]{\footnotesize{The implementation and dataset used in this research are available here: https://l1nq.com/sde9pdz.}}
-    \renewcommand{\headrulewidth}{0pt}
-    \renewcommand{\footrulewidth}{0pt}
-}
+
 \begin{document}
+
 \maketitle
-\thispagestyle{firstpage} 
+
 \begin{abstract}
 General-purpose text embedding models are designed to capture semantic similarity but are not optimised for distinguishing entity records that represent the same real-world business or person. This limitation affects applications such as entity resolution and duplicate record retrieval, where small textual differences may either preserve or change identity. This paper investigates whether domain-specific triplet fine-tuning can adapt pretrained embedding models for identity-sensitive retrieval. A synthetic dataset of business and person records was created with identity-preserving variations and challenging non-matching examples. Two widely used embedding models were evaluated before and after fine-tuning using a margin-based similarity evaluation. The results show substantial improvements in separating true matches from highly similar non-matches, demonstrating that domain-specific triplet training can effectively reshape general-purpose embedding spaces for entity retrieval. These findings suggest that targeted fine-tuning provides a practical approach for improving embedding models in data quality management and information retrieval applications.
 \end{abstract}
@@ -310,6 +308,10 @@ One possible direction for future research is therefore the development of conte
 
 This paradigm has the potential to move beyond task-specific embedding models towards more adaptive retrieval systems capable of generating multiple representations of the same text for different information needs. Exploring how contextual guidance can be incorporated into embedding models, and how such representations can be learned efficiently, represents a promising direction for future research in information retrieval and representation learning.
 
+\begin{ack}
+Funding and competing interests to be declared in the camera-ready version.
+\end{ack}
+
 \bibliographystyle{plainnat}
 \begin{thebibliography}{9}
 
@@ -359,5 +361,45 @@ Beijing Academy of Artificial Intelligence (BAAI).
 \newblock Hugging Face model card. \url{https://huggingface.co/BAAI/bge-base-en-v1.5}, 2023.
 
 \end{thebibliography}
+
+\appendix
+\renewcommand{\thesection}{Appendix \Alph{section}}
+
+\section{Training configuration}
+\label{sec:appendix-training}
+
+The same principal settings were used for both models during fine-tuning. Table~\ref{tab:training-config} summarizes the training configuration.
+
+\begin{table}[h]
+  \caption{Training configuration.}
+  \label{tab:training-config}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Parameter & Value \\
+    \midrule
+    Training triplets      & 6{,}130 \\
+    Validation triplets    & 2{,}000 \\
+    Learning rate           & $2 \times 10^{-5}$ \\
+    Training batch size     & 16 \\
+    Evaluation batch size   & 8 \\
+    Number of epochs        & 3 \\
+    Loss function            & Triplet loss \\
+    Distance metric          & Cosine distance \\
+    Triplet margin           & 0.30 \\
+    Warm-up ratio            & 0.10 \\
+    Evaluation frequency     & Every 200 steps \\
+    Checkpoint frequency     & Every 200 steps \\
+    Logging frequency        & Every 10 steps \\
+    Training seed             & 42 \\
+    Data seed                 & 42 \\
+    Best-model metric         & Triplet cosine accuracy \\
+    Early stopping             & Not used \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\newpage
+\input{checklist.tex}
 
 \end{document}
