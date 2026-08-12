@@ -16,7 +16,6 @@
 \usepackage{xcolor}
 
 % Aggressively discourage hyphenation/mid-word line breaks.
-% Some extra inter-word stretch is allowed instead.
 \tolerance=1000
 \emergencystretch=3em
 \hyphenpenalty=10000
@@ -275,8 +274,8 @@ These results indicate that triplet fine-tuning did more than preserve the ranki
     \toprule
     Model & Margin 0.30 & Margin 0.20 & Margin 0.10 \\
     \midrule
-    BGE Base EN v1.5 (pretrained)  & 15.25\% & 41.85\% & 60.85\% \\
-    BGE Base EN v1.5 (fine-tuned)  & 92.70\% & 96.85\% & 98.60\% \\
+    BGE Base EN v1.5 (pretrained) & 15.25\% & 41.85\% & 60.85\% \\
+    BGE Base EN v1.5 (fine-tuned) & 92.70\% & 96.85\% & 98.60\% \\
     all-MiniLM-L6-v2 (pretrained) & 37.85\% & 49.35\% & 64.25\% \\
     all-MiniLM-L6-v2 (fine-tuned) & 83.10\% & 88.95\% & 93.10\% \\
     \bottomrule
@@ -341,7 +340,7 @@ F. Schroff, D. Kalenichenko, and J. Philbin.
 \newblock In \emph{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, pages 815--823, Boston, MA, USA, 2015.
 
 \bibitem[Hoffer and Ailon(2015)]{hoffer2015}
-E. Hoffer and E. Ailon.
+E. Hoffer and Y. Ailon.
 \newblock Deep metric learning using triplet network.
 \newblock In \emph{Proceedings of the International Workshop on Similarity-Based Pattern Recognition}, pages 84--92, Copenhagen, Denmark, 2015.
 
@@ -389,23 +388,23 @@ Table~\ref{tab:training-config} summarizes the training configuration.
     \toprule
     Parameter & Value \\
     \midrule
-    Training triplets      & 6{,}130 \\
-    Validation triplets    & 2{,}000 \\
-    Learning rate          & $2 \times 10^{-5}$ \\
-    Training batch size    & 16 \\
-    Evaluation batch size  & 8 \\
-    Number of epochs       & 3 \\
-    Loss function          & Triplet loss \\
-    Distance metric        & Cosine distance \\
-    Triplet margin         & 0.30 \\
-    Warm-up ratio          & 0.10 \\
-    Evaluation frequency   & Every 200 steps \\
-    Checkpoint frequency   & Every 200 steps \\
-    Logging frequency      & Every 10 steps \\
-    Training seed          & 42 \\
-    Data seed              & 42 \\
-    Best-model metric      & Triplet cosine accuracy \\
-    Early stopping         & Not used \\
+    Training triplets       & 6{,}130 \\
+    Validation triplets     & 2{,}000 \\
+    Learning rate            & $2 \times 10^{-5}$ \\
+    Training batch size      & 16 \\
+    Evaluation batch size    & 8 \\
+    Number of epochs         & 3 \\
+    Loss function            & Triplet loss \\
+    Distance metric          & Cosine distance \\
+    Triplet margin           & 0.30 \\
+    Warm-up ratio            & 0.10 \\
+    Evaluation frequency     & Every 200 steps \\
+    Checkpoint frequency     & Every 200 steps \\
+    Logging frequency        & Every 10 steps \\
+    Training seed            & 42 \\
+    Data seed                & 42 \\
+    Best-model metric        & Triplet cosine accuracy \\
+    Early stopping           & Not used \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -419,9 +418,9 @@ Table~\ref{tab:training-config} summarizes the training configuration.
 
 This appendix presents representative anchor--positive--negative triplets
 used to illustrate the difference between the pretrained and fine-tuned
-embedding models. Each entry contains an anchor record, a positive example
-representing the same entity, and a negative example representing a
-near-duplicate distractor. The reported gap is defined as
+embedding models. Each example contains an anchor record, a positive
+example representing the same entity, and a negative example representing
+a near-duplicate distractor. The reported gap is defined as
 
 \begin{equation}
 \text{Gap}
@@ -434,13 +433,13 @@ S_{\text{negative}}.
 A larger positive gap indicates stronger separation between the true match
 and the non-matching candidate.
 
-% ------------------------------------------------------------
-% all-MiniLM-L6-v2: Business Entities
-% ------------------------------------------------------------
+% ============================================================
+% MINILM BUSINESS EXAMPLES
+% ============================================================
 
 \subsection{all-MiniLM-L6-v2: Business Entities}
 
-\paragraph{Row 1112 --- Cenquay \& Kin S.A.C. (Peru)}
+\paragraph{Example 1}
 
 \textbf{Anchor:} Cenquay \& Kin S.A.C. is a firm located at Oficina 172, 92 Plum Fen Jiron, Trujillo, Arequipa 04001, Peru.
 
@@ -460,7 +459,7 @@ Fine-Tuned & 0.9950 & 0.5280 & +0.4671 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1128 --- Society of Xenovara Bicycle Components Ltd (UK)}
+\paragraph{Example 2}
 
 \textbf{Anchor:} Society of Xenovara bicycle components Ltd is a firm located at Suite 288, 334 Clover Sena Lane, Bristol, England YO1 7PR, United Kingdom.
 
@@ -480,7 +479,7 @@ Fine-Tuned & 0.9962 & 0.5838 & +0.4124 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1137 --- Belnori Navigation Guild Ltd. (Ghana)}
+\paragraph{Example 3}
 
 \textbf{Anchor:} Belnori Navigation Guild Ltd. is a firm located at Suite 110, 181 Olive Yara Road, Tamale, Ashanti AK-039-5021, Ghana.
 
@@ -500,7 +499,7 @@ Fine-Tuned & 0.9968 & 0.5578 & +0.4390 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1157 --- Warovara, Botanical Extracts S.R.L. (Uruguay)}
+\paragraph{Example 4}
 
 \textbf{Anchor:} Warovara, botanical extracts S.R.L. is a firm located at Apto. 241, 251 Pearl Koa Calle, Salto, Maldonado 20000, Uruguay.
 
@@ -520,7 +519,7 @@ Fine-Tuned & 0.8078 & 0.4635 & +0.3443 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1209 --- Zurivara \& Kin SARL (France)}
+\paragraph{Example 5}
 
 \textbf{Anchor:} Zurivara \& Kin SARL is a firm located at Bureau 382, 500 Mango Gra rue, Nimes, Occitanie 31000, France.
 
@@ -540,13 +539,13 @@ Fine-Tuned & 0.9952 & 0.6588 & +0.3365 \\
 \end{tabular}
 \end{center}
 
-% ------------------------------------------------------------
-% all-MiniLM-L6-v2: Person Entities
-% ------------------------------------------------------------
+% ============================================================
+% MINILM PERSON EXAMPLES
+% ============================================================
 
 \subsection{all-MiniLM-L6-v2: Person Entities}
 
-\paragraph{Row 1118 --- Goran Valente (Ethiopia)}
+\paragraph{Example 1}
 
 \textbf{Anchor:} Goran Valente is a person living at Unit 55E, 550 Ginger Zel Road, Adama, Amhara 1000, Ethiopia.
 
@@ -566,7 +565,7 @@ Fine-Tuned & 0.6330 & 0.2020 & +0.4311 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1138 --- Nuru Tadesse (Georgia)}
+\paragraph{Example 2}
 
 \textbf{Anchor:} Nuru Tadesse is a person living at Wohnung 468, 282 Beech Xan Street, Rustavi, Imereti 4600, Georgia.
 
@@ -586,7 +585,7 @@ Fine-Tuned & 0.7974 & 0.4500 & +0.3473 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1148 --- Parisa Dervishi (Papua New Guinea)}
+\paragraph{Example 3}
 
 \textbf{Anchor:} Parisa Dervishi is a person living at Apartamento 83, 476 Azalea Lun Road, Mount Hagen, Morobe 411, Papua New Guinea.
 
@@ -606,7 +605,7 @@ Fine-Tuned & 0.7059 & 0.3939 & +0.3120 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1176 --- Leire Okafor (Costa Rica)}
+\paragraph{Example 4}
 
 \textbf{Anchor:} Leire Okafor is a person living at Casa 8, 486 Slate Bri Avenida, Heredia, San Jose 10101, Costa Rica.
 
@@ -626,7 +625,7 @@ Fine-Tuned & 0.9088 & 0.5801 & +0.3287 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1214 --- Uche Eriksen (Indonesia)}
+\paragraph{Example 5}
 
 \textbf{Anchor:} Uche Eriksen is a person living at Apartamento 412, 430 Marigold Zuri Jalan, Yogyakarta, West Java 40111, Indonesia.
 
@@ -646,13 +645,13 @@ Fine-Tuned & 0.9905 & 0.5701 & +0.3363 \\
 \end{tabular}
 \end{center}
 
-% ------------------------------------------------------------
-% BGE Base: Business Entities
-% ------------------------------------------------------------
+% ============================================================
+% BGE BUSINESS EXAMPLES
+% ============================================================
 
 \subsection{BAAI/bge-base-en-v1.5: Business Entities}
 
-\paragraph{Rank 1 --- Society of Talnori Specialty Milling OU (Estonia)}
+\paragraph{Example 1}
 
 \textbf{Anchor:} Society of Talnori specialty milling OU is a firm located at Buroo 131, 398 Cobalt Tovi tanav, Parnu, Tartu County 51004, Estonia.
 
@@ -672,7 +671,7 @@ Fine-Tuned & 0.9641 & -0.3536 & +1.3177 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Rank 2 --- Society of Xenovara Bicycle Components Ltd (UK)}
+\paragraph{Example 2}
 
 \textbf{Anchor:} Society of Xenovara bicycle components Ltd is a firm located at Suite 288, 334 Clover Sena Lane, Bristol, England YO1 7PR, United Kingdom.
 
@@ -692,7 +691,7 @@ Fine-Tuned & 0.9576 & -0.3459 & +1.3034 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Rank 3 --- Society of Lunvara Geotechnical Drilling S.R.L. (Costa Rica)}
+\paragraph{Example 3}
 
 \textbf{Anchor:} Society of Lunvara geotechnical drilling S.R.L. is a firm located at Oficina 168, 302 Elm Riv Avenida, Heredia, San Jose 10101, Costa Rica.
 
@@ -712,7 +711,7 @@ Fine-Tuned & 0.9605 & -0.3210 & +1.2815 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Rank 4 --- Society of Ivonori Solar Glazing sp. z o.o. (Poland)}
+\paragraph{Example 4}
 
 \textbf{Anchor:} Society of Ivonori solar glazing sp. z o.o. is a firm located at Lokal 11, 366 Juniper Sor ulica, Lublin, Lesser Poland 30-001, Poland.
 
@@ -732,7 +731,7 @@ Fine-Tuned & 0.9506 & -0.3409 & +1.2916 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Rank 5 --- Society of Perrnori Workwear Manufacturing MChJ (Uzbekistan)}
+\paragraph{Example 5}
 
 \textbf{Anchor:} Society of Perrnori workwear manufacturing MChJ is a firm located at Ofis 371, 462 Papyrus Ursa ko'chasi, Bukhara, Samarkand Region 140100, Uzbekistan.
 
@@ -752,13 +751,13 @@ Fine-Tuned & 0.9862 & -0.2525 & +1.2387 \\
 \end{tabular}
 \end{center}
 
-% ------------------------------------------------------------
-% BGE Base: Person Entities
-% ------------------------------------------------------------
+% ============================================================
+% BGE PERSON EXAMPLES
+% ============================================================
 
 \subsection{BAAI/bge-base-en-v1.5: Person Entities}
 
-\paragraph{Row 1755 --- Gita Gyamfi (Netherlands)}
+\paragraph{Example 1}
 
 \textbf{Anchor:} Gita Gyamfi is a person living at Lot 241E, 629 Cedar Vela straat, Breda, Gelderland 6811 AA, Netherlands.
 
@@ -778,7 +777,7 @@ Fine-Tuned & 0.9613 & 0.6284 & +0.3328 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1756 --- Zoran Deshmukh (Mongolia)}
+\paragraph{Example 2}
 
 \textbf{Anchor:} Zoran Deshmukh is a person living at Apartamento 238, 384 Seabird Mav Gudamj, Choibalsan, Orkhon 61020, Mongolia.
 
@@ -798,7 +797,7 @@ Fine-Tuned & 0.9316 & 0.5891 & +0.3425 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1768 --- Gita Gyamfi -- abbreviation variant (Netherlands)}
+\paragraph{Example 3}
 
 \textbf{Anchor:} Gita Gyamfi is a person living at Lot 241E, 629 Cedar Vela straat, Breda, Gelderland 6811 AA, Netherlands.
 
@@ -818,7 +817,7 @@ Fine-Tuned & 0.9937 & 0.6649 & +0.3288 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1769 --- Tenzin Etxeberria (Belgium)}
+\paragraph{Example 4}
 
 \textbf{Anchor:} Tenzin Etxeberria is a person living at Apartamento 480, 315 Sorrel Gra rue, Liege, Wallonia 5000, Belgium.
 
@@ -838,7 +837,7 @@ Fine-Tuned & 1.0000 & 0.6729 & +0.3271 \\
 \end{tabular}
 \end{center}
 
-\paragraph{Row 1771 --- Mirela Haddad (France)}
+\paragraph{Example 5}
 
 \textbf{Anchor:} Mirela Haddad is a person living at Lot 67C, 583 Anise Ivo rue, Nimes, Occitanie 31000, France.
 
@@ -858,18 +857,18 @@ Fine-Tuned & 0.9379 & 0.6222 & +0.3157 \\
 \end{tabular}
 \end{center}
 
-% ------------------------------------------------------------
-% Summary and observations remain inside Appendix B
-% ------------------------------------------------------------
+% ============================================================
+% SUMMARY WITHIN APPENDIX B
+% ============================================================
 
 \subsection{Average Discrimination Gap}
 
 Table~\ref{tab:gap-summary} summarizes the average discrimination gap across
-the representative business and person cases. The improvement is calculated
+the representative business and person examples. The improvement is calculated
 as the difference between the fine-tuned and pretrained average gaps.
 
 \begin{table}[t]
-  \caption{Average discrimination gap for representative comparison cases.}
+  \caption{Average discrimination gap across representative examples.}
   \label{tab:gap-summary}
   \centering
   \begin{tabular}{lccc}
@@ -899,29 +898,27 @@ The representative comparisons reveal several consistent patterns:
     true matches and near-duplicate distractors.
 
     \item \textbf{Strongest effect for BGE business entities:}
-    The effect is largest for BAAI/bge-base-en-v1.5 on business entities.
-    In the representative cases, fine-tuned negative similarities drop
-    below zero, reaching values as low as $-0.35$, while the average gap
-    increases from approximately $0.069$ to $1.287$.
+    The largest improvement is observed for BAAI/bge-base-en-v1.5 on
+    business entities. The average gap increases from approximately
+    $0.069$ for the pretrained model to $1.287$ after fine-tuning.
 
     \item \textbf{Substantial improvement for MiniLM:}
-    For all-MiniLM-L6-v2, the average gap increases from approximately
-    $0.035$ to $0.400$ for business entities and from approximately
-    $0.007$ to $0.351$ for person entities.
+    For all-MiniLM-L6-v2, the average gap increases from $0.0349$ to
+    $0.3999$ for business entities and from $0.0072$ to $0.3511$
+    for person entities.
 
     \item \textbf{Correction of ranking failures:}
-    The base models can assign a higher similarity to the negative example
-    than to the true positive. For example, the MiniLM business case in
-    Row 1157 has a base gap of $-0.0170$, while the person cases in
-    Rows 1138, 1148, and 1176 have base gaps of $-0.0218$, $-0.0539$,
-    and $-0.0258$, respectively. Fine-tuning converts these cases into
-    positive gaps.
+    The pretrained models can assign a higher similarity to a negative
+    example than to the corresponding positive example. In the representative
+    MiniLM cases, negative base-model gaps are observed for business
+    Example 4 and Example 5, and for person Examples 2, 3, and 4.
+    Fine-tuning changes these gaps to positive values.
 
     \item \textbf{Sensitivity to location conflicts:}
-    Several examples retain highly similar or identical names while
-    changing the business or residential location. The fine-tuned models
-    assign substantially lower similarity to these distractors, indicating
-    improved sensitivity to meaningful location differences.
+    Several examples preserve highly similar or identical names while
+    changing the business or residential location. Fine-tuning substantially
+    reduces the similarity assigned to these non-matching records,
+    demonstrating improved sensitivity to identity and location conflicts.
 \end{itemize}
 
 \end{document}
