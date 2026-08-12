@@ -15,9 +15,8 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 
-% Aggressively discourage hyphenation/mid-word line breaks. Some extra
-% inter-word stretch is allowed instead, so lines may look very slightly
-% looser in rare spots, but words will almost never split across lines.
+% Aggressively discourage hyphenation/mid-word line breaks.
+% Some extra inter-word stretch is allowed instead.
 \tolerance=1000
 \emergencystretch=3em
 \hyphenpenalty=10000
@@ -180,7 +179,8 @@ Each model was first evaluated using its original pretrained weights to establis
 The effectiveness of each embedding model was evaluated using the validation dataset containing 2,000 triplets. Each triplet consisted of an anchor record, an identity-preserving positive example, and a challenging negative example representing a different entity. For each record, dense vector embeddings were generated using the evaluated model and normalized prior to similarity computation. Cosine similarity was then calculated between the anchor and its corresponding positive and negative records:
 
 \begin{equation}
-  S_{\text{positive}} = \mathrm{sim}(a, p), \qquad S_{\text{negative}} = \mathrm{sim}(a, n),
+  S_{\text{positive}} = \mathrm{sim}(a, p), \qquad
+  S_{\text{negative}} = \mathrm{sim}(a, n),
   \label{eq:sim}
 \end{equation}
 
@@ -189,7 +189,7 @@ where $a$, $p$, and $n$ denote the anchor, positive, and negative embeddings res
 For every triplet, the separation between the positive and negative examples was measured as
 
 \begin{equation}
-  \text{Score Gap} = S_{\text{positive}} - S_{\text{negative}}.
+  \text{Score Gap} = S_{\text{positive}} - S_{\text{negative}},
   \label{eq:gap}
 \end{equation}
 
@@ -253,8 +253,8 @@ These observations are consistent with the objectives of general-purpose sentenc
     \toprule
     Model & Margin 0.30 & Margin 0.20 & Margin 0.10 \\
     \midrule
-    BGE Base EN v1.5 (pretrained)    & 15.25\% & 41.85\% & 60.85\% \\
-    all-MiniLM-L6-v2 (pretrained)   & 37.85\% & 49.35\% & 64.25\% \\
+    BGE Base EN v1.5 (pretrained)  & 15.25\% & 41.85\% & 60.85\% \\
+    all-MiniLM-L6-v2 (pretrained) & 37.85\% & 49.35\% & 64.25\% \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -275,10 +275,10 @@ These results indicate that triplet fine-tuning did more than preserve the ranki
     \toprule
     Model & Margin 0.30 & Margin 0.20 & Margin 0.10 \\
     \midrule
-    BGE Base EN v1.5 (pretrained)   & 15.25\% & 41.85\% & 60.85\% \\
-    BGE Base EN v1.5 (fine-tuned)   & 92.70\% & 96.85\% & 98.60\% \\
-    all-MiniLM-L6-v2 (pretrained)   & 37.85\% & 49.35\% & 64.25\% \\
-    all-MiniLM-L6-v2 (fine-tuned)   & 83.10\% & 88.95\% & 93.10\% \\
+    BGE Base EN v1.5 (pretrained)  & 15.25\% & 41.85\% & 60.85\% \\
+    BGE Base EN v1.5 (fine-tuned)  & 92.70\% & 96.85\% & 98.60\% \\
+    all-MiniLM-L6-v2 (pretrained) & 37.85\% & 49.35\% & 64.25\% \\
+    all-MiniLM-L6-v2 (fine-tuned) & 83.10\% & 88.95\% & 93.10\% \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -331,7 +331,7 @@ P. Christen.
 \newblock Springer, Berlin, Germany, 2012.
 
 \bibitem[Elmagarmid et al.(2007)]{elmagarmid2007}
-A. K. Elmagarmid, P. G. Ipeirotis, and V. S. Verykios.
+A. K. Elmagarmid, P. G. Ipeirotis, and P. G. Verykios.
 \newblock Duplicate record detection: A survey.
 \newblock \emph{IEEE Transactions on Knowledge and Data Engineering}, 19(1):1--16, 2007.
 
@@ -341,7 +341,7 @@ F. Schroff, D. Kalenichenko, and J. Philbin.
 \newblock In \emph{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, pages 815--823, Boston, MA, USA, 2015.
 
 \bibitem[Hoffer and Ailon(2015)]{hoffer2015}
-E. Hoffer and N. Ailon.
+E. Hoffer and E. Ailon.
 \newblock Deep metric learning using triplet network.
 \newblock In \emph{Proceedings of the International Workshop on Similarity-Based Pattern Recognition}, pages 84--92, Copenhagen, Denmark, 2015.
 
@@ -353,22 +353,33 @@ V. Karpukhin, B. Oguz, S. Min, et al.
 \bibitem[Reimers(2019{\natexlab{b}})]{minilm}
 N. Reimers.
 \newblock sentence-transformers/all-MiniLM-L6-v2.
-\newblock Hugging Face model card. \url{https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2}, 2019.
+\newblock Hugging Face model card.
+\url{https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2}, 2019.
 
 \bibitem[BAAI(2023)]{bge}
 Beijing Academy of Artificial Intelligence (BAAI).
 \newblock BAAI/bge-base-en-v1.5.
-\newblock Hugging Face model card. \url{https://huggingface.co/BAAI/bge-base-en-v1.5}, 2023.
+\newblock Hugging Face model card.
+\url{https://huggingface.co/BAAI/bge-base-en-v1.5}, 2023.
 
 \end{thebibliography}
+
+% ============================================================
+% APPENDIX
+% ============================================================
 
 \appendix
 \renewcommand{\thesection}{Appendix \Alph{section}}
 
-\section{Training configuration}
+% ============================================================
+% APPENDIX A
+% ============================================================
+
+\section{Training Configuration}
 \label{sec:appendix-training}
 
-The same principal settings were used for both models during fine-tuning. Table~\ref{tab:training-config} summarizes the training configuration.
+The same principal settings were used for both models during fine-tuning.
+Table~\ref{tab:training-config} summarizes the training configuration.
 
 \begin{table}[h]
   \caption{Training configuration.}
@@ -380,26 +391,537 @@ The same principal settings were used for both models during fine-tuning. Table~
     \midrule
     Training triplets      & 6{,}130 \\
     Validation triplets    & 2{,}000 \\
-    Learning rate           & $2 \times 10^{-5}$ \\
-    Training batch size     & 16 \\
-    Evaluation batch size   & 8 \\
-    Number of epochs        & 3 \\
-    Loss function            & Triplet loss \\
-    Distance metric          & Cosine distance \\
-    Triplet margin           & 0.30 \\
-    Warm-up ratio            & 0.10 \\
-    Evaluation frequency     & Every 200 steps \\
-    Checkpoint frequency     & Every 200 steps \\
-    Logging frequency        & Every 10 steps \\
-    Training seed             & 42 \\
-    Data seed                 & 42 \\
-    Best-model metric         & Triplet cosine accuracy \\
-    Early stopping             & Not used \\
+    Learning rate          & $2 \times 10^{-5}$ \\
+    Training batch size    & 16 \\
+    Evaluation batch size  & 8 \\
+    Number of epochs       & 3 \\
+    Loss function          & Triplet loss \\
+    Distance metric        & Cosine distance \\
+    Triplet margin         & 0.30 \\
+    Warm-up ratio          & 0.10 \\
+    Evaluation frequency   & Every 200 steps \\
+    Checkpoint frequency   & Every 200 steps \\
+    Logging frequency      & Every 10 steps \\
+    Training seed          & 42 \\
+    Data seed              & 42 \\
+    Best-model metric      & Triplet cosine accuracy \\
+    Early stopping         & Not used \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-\newpage
-\input{checklist.tex}
+% ============================================================
+% APPENDIX B
+% ============================================================
+
+\section{Base vs. Fine-Tuned Model Comparisons}
+\label{sec:appendix-comparisons}
+
+This appendix presents representative anchor--positive--negative triplets
+used to illustrate the difference between the pretrained and fine-tuned
+embedding models. Each entry contains an anchor record, a positive example
+representing the same entity, and a negative example representing a
+near-duplicate distractor. The reported gap is defined as
+
+\begin{equation}
+\text{Gap}
+=
+S_{\text{positive}}
+-
+S_{\text{negative}}.
+\end{equation}
+
+A larger positive gap indicates stronger separation between the true match
+and the non-matching candidate.
+
+% ------------------------------------------------------------
+% all-MiniLM-L6-v2: Business Entities
+% ------------------------------------------------------------
+
+\subsection{all-MiniLM-L6-v2: Business Entities}
+
+\paragraph{Row 1112 --- Cenquay \& Kin S.A.C. (Peru)}
+
+\textbf{Anchor:} Cenquay \& Kin S.A.C. is a firm located at Oficina 172, 92 Plum Fen Jiron, Trujillo, Arequipa 04001, Peru.
+
+\textbf{Positive:} Cenquay \& Kin S.A.C. is a firm located at Of. 172, 92 Plum Fen Jiron, Trujillo, Arequipa 04001, Peru.
+
+\textbf{Negative:} Cenuay \& Kin S.A.C. is a firm located at Oficina 172, 92 Plum Fen Jiron, Trujillo, Arequipa 04001, Peru.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9820 & 0.8967 & +0.0854 \\
+Fine-Tuned & 0.9950 & 0.5280 & +0.4671 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1128 --- Society of Xenovara Bicycle Components Ltd (UK)}
+
+\textbf{Anchor:} Society of Xenovara bicycle components Ltd is a firm located at Suite 288, 334 Clover Sena Lane, Bristol, England YO1 7PR, United Kingdom.
+
+\textbf{Positive:} Society of Xenovara bicycle components Ltd is a firm located at Ste 288 - 334 Clover Sena Ln, Bristol, England YO1 7PR, United Kingdom.
+
+\textbf{Negative:} Society of Xenovara bicycle components Ltd is a firm located at Suite 63, Trellis Business Centre, Bristol, England YO1 7PR, United Kingdom.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9821 & 0.9433 & +0.0389 \\
+Fine-Tuned & 0.9962 & 0.5838 & +0.4124 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1137 --- Belnori Navigation Guild Ltd. (Ghana)}
+
+\textbf{Anchor:} Belnori Navigation Guild Ltd. is a firm located at Suite 110, 181 Olive Yara Road, Tamale, Ashanti AK-039-5021, Ghana.
+
+\textbf{Positive:} Belnori Navigation Guild Ltd. is a firm located at Ste 110, 181 Olive Yara Rd, Tamale, Ashanti AK-039-5021, Ghana.
+
+\textbf{Negative:} Belori Navigation Guild Ltd. is a firm located at Suite 110, 181 Olive Yara Road, Tamale, Ashanti AK-039-5021, Ghana.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9885 & 0.9187 & +0.0698 \\
+Fine-Tuned & 0.9968 & 0.5578 & +0.4390 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1157 --- Warovara, Botanical Extracts S.R.L. (Uruguay)}
+
+\textbf{Anchor:} Warovara, botanical extracts S.R.L. is a firm located at Apto. 241, 251 Pearl Koa Calle, Salto, Maldonado 20000, Uruguay.
+
+\textbf{Positive:} Warovara, botanical extracts is a firm located at Apto 241 251 Pearl Koa Calle Salto Maldonado 20000 Uruguay.
+
+\textbf{Negative:} Warovara, botanical extracts S.R.L. is a firm located at Apto. 241, 251 Pearl Koa Calle, Salto, Dahlia Region 10012, Uruguay.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9651 & 0.9822 & -0.0170 \\
+Fine-Tuned & 0.8078 & 0.4635 & +0.3443 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1209 --- Zurivara \& Kin SARL (France)}
+
+\textbf{Anchor:} Zurivara \& Kin SARL is a firm located at Bureau 382, 500 Mango Gra rue, Nimes, Occitanie 31000, France.
+
+\textbf{Positive:} Zurivara \& Kin SARL is a firm located at Nimes, Occitanie 31000, Bureau 382, 500 Mango Gra rue, France.
+
+\textbf{Negative:} Zurivara \& Kin SARL is a firm located at Bureau 382, 500 Mango Gra rue, Paris, Occitanie 31000, France.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9867 & 0.9891 & -0.0025 \\
+Fine-Tuned & 0.9952 & 0.6588 & +0.3365 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ------------------------------------------------------------
+% all-MiniLM-L6-v2: Person Entities
+% ------------------------------------------------------------
+
+\subsection{all-MiniLM-L6-v2: Person Entities}
+
+\paragraph{Row 1118 --- Goran Valente (Ethiopia)}
+
+\textbf{Anchor:} Goran Valente is a person living at Unit 55E, 550 Ginger Zel Road, Adama, Amhara 1000, Ethiopia.
+
+\textbf{Positive:} Goran V. is a person living at Unit 55E, 550 Ginger Zel Road, Adama, Amhara 1000.
+
+\textbf{Negative:} Goran Valente is a person living at Unit 123, 435 Jacaranda Glen Lane, Hamilton, Canterbury 8011, New Zealand.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.7644 & 0.7110 & +0.0534 \\
+Fine-Tuned & 0.6330 & 0.2020 & +0.4311 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1138 --- Nuru Tadesse (Georgia)}
+
+\textbf{Anchor:} Nuru Tadesse is a person living at Wohnung 468, 282 Beech Xan Street, Rustavi, Imereti 4600, Georgia.
+
+\textbf{Positive:} Nuru T. is a person living at Wohnung 468, 282 Beech Xan Street, Rustavi, Imereti 4600.
+
+\textbf{Negative:} Nuru Tadesse is a person living at Wohnung 33, 167 Willow Ero Avenue, Salem, Oregon OR 97401, United States.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.7502 & 0.7720 & -0.0218 \\
+Fine-Tuned & 0.7974 & 0.4500 & +0.3473 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1148 --- Parisa Dervishi (Papua New Guinea)}
+
+\textbf{Anchor:} Parisa Dervishi is a person living at Apartamento 83, 476 Azalea Lun Road, Mount Hagen, Morobe 411, Papua New Guinea.
+
+\textbf{Positive:} Parisa D. is a person living at Apartamento 83, 476 Azalea Lun Road, Mount Hagen, Morobe 411.
+
+\textbf{Negative:} Parisa Dervishi is a person living at Apartamento 151, 361 Orchard Tovi ulica, Nitra, Zilina 010 01, Slovakia.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.7193 & 0.7732 & -0.0539 \\
+Fine-Tuned & 0.7059 & 0.3939 & +0.3120 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1176 --- Leire Okafor (Costa Rica)}
+
+\textbf{Anchor:} Leire Okafor is a person living at Casa 8, 486 Slate Bri Avenida, Heredia, San Jose 10101, Costa Rica.
+
+\textbf{Positive:} Leire O. is a person living at Casa 8, 486 Slate Bri Avenida, Heredia, San Jose 10101.
+
+\textbf{Negative:} Leire Okafor is a person living at Casa 443, 601 Cypress Ursa ko'chasi, Namangan, Samarkand Region 140100, Uzbekistan.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.8088 & 0.8346 & -0.0258 \\
+Fine-Tuned & 0.9088 & 0.5801 & +0.3287 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1214 --- Uche Eriksen (Indonesia)}
+
+\textbf{Anchor:} Uche Eriksen is a person living at Apartamento 412, 430 Marigold Zuri Jalan, Yogyakarta, West Java 40111, Indonesia.
+
+\textbf{Positive:} Uche Eriksen is a person living at 430 Marigold Zuri Jalan, Apartamento 412, Yogyakarta, West Java 40111, Indonesia.
+
+\textbf{Negative:} Uche Eriksen is a person living at Apartamento 412, 430 Marigold Zuri Jalan, Different City, Different Region.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9915 & 0.9074 & +0.0841 \\
+Fine-Tuned & 0.9905 & 0.5701 & +0.3363 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ------------------------------------------------------------
+% BGE Base: Business Entities
+% ------------------------------------------------------------
+
+\subsection{BAAI/bge-base-en-v1.5: Business Entities}
+
+\paragraph{Rank 1 --- Society of Talnori Specialty Milling OU (Estonia)}
+
+\textbf{Anchor:} Society of Talnori specialty milling OU is a firm located at Buroo 131, 398 Cobalt Tovi tanav, Parnu, Tartu County 51004, Estonia.
+
+\textbf{Positive:} Socety of Talnori specialty milling OU is a firm located at Buroo 131, 398 Cobalt Tovi tnv, Parnu, Tartu County, Estonia.
+
+\textbf{Negative:} Society of Talnori specialty milling OU is a firm located at Buroo 131, 398 Cobalt Tovi tanav, Al Ain, Central District 10035, United Arab Emirates.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9821 & 0.9241 & +0.0579 \\
+Fine-Tuned & 0.9641 & -0.3536 & +1.3177 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Rank 2 --- Society of Xenovara Bicycle Components Ltd (UK)}
+
+\textbf{Anchor:} Society of Xenovara bicycle components Ltd is a firm located at Suite 288, 334 Clover Sena Lane, Bristol, England YO1 7PR, United Kingdom.
+
+\textbf{Positive:} Socety of Xenovara bicycle components Ltd is a firm located at Ste 288, 334 Clover Sena Ln, Bristol, England 7PR, United Kingdom.
+
+\textbf{Negative:} Society of Xenovara bicycle components Ltd is a firm located at Suite 288, 334 Clover Sena Lane, Osaka, Central District 10013, Japan.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9678 & 0.9009 & +0.0669 \\
+Fine-Tuned & 0.9576 & -0.3459 & +1.3034 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Rank 3 --- Society of Lunvara Geotechnical Drilling S.R.L. (Costa Rica)}
+
+\textbf{Anchor:} Society of Lunvara geotechnical drilling S.R.L. is a firm located at Oficina 168, 302 Elm Riv Avenida, Heredia, San Jose 10101, Costa Rica.
+
+\textbf{Positive:} Socety of Lunvara geotechnical drilling SRL is a firm located at Of. 168, 302 Elm Riv Av., Heredia, San Jose, Costa Rica.
+
+\textbf{Negative:} Society of Lunvara geotechnical drilling SRL is a firm located at Oficina 168, 302 Elm Riv Avenida, Bedok, Central District 10002, Singapore.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9536 & 0.8815 & +0.0721 \\
+Fine-Tuned & 0.9605 & -0.3210 & +1.2815 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Rank 4 --- Society of Ivonori Solar Glazing sp. z o.o. (Poland)}
+
+\textbf{Anchor:} Society of Ivonori solar glazing sp. z o.o. is a firm located at Lokal 11, 366 Juniper Sor ulica, Lublin, Lesser Poland 30-001, Poland.
+
+\textbf{Positive:} Socety of Ivonori solar glazing sp z oo is a firm located at Lokal 11, 366 Juniper Sor ul., Lublin, Lesser Poland 30-, Poland.
+
+\textbf{Negative:} Society of Ivonori solar glazing sp z oo is a firm located at Lokal 11, 366 Juniper Sor ulica, Portland, Central District 10024, United States.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9661 & 0.8799 & +0.0862 \\
+Fine-Tuned & 0.9506 & -0.3409 & +1.2916 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Rank 5 --- Society of Perrnori Workwear Manufacturing MChJ (Uzbekistan)}
+
+\textbf{Anchor:} Society of Perrnori workwear manufacturing MChJ is a firm located at Ofis 371, 462 Papyrus Ursa ko'chasi, Bukhara, Samarkand Region 140100, Uzbekistan.
+
+\textbf{Positive:} Socety of Perrnori workwear manufacturing MChJ is a firm located at Of. 371, 462 Papyrus Ursa ko'chasi, Bukhara, Samarkand Region, Uzbekistan.
+
+\textbf{Negative:} Society of Perrnori workwear manufacturing MChJ is a firm located at Ofis 371, 462 Papyrus Ursa ko'chasi, Munich, Central District 10057, Germany.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9854 & 0.9246 & +0.0608 \\
+Fine-Tuned & 0.9862 & -0.2525 & +1.2387 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ------------------------------------------------------------
+% BGE Base: Person Entities
+% ------------------------------------------------------------
+
+\subsection{BAAI/bge-base-en-v1.5: Person Entities}
+
+\paragraph{Row 1755 --- Gita Gyamfi (Netherlands)}
+
+\textbf{Anchor:} Gita Gyamfi is a person living at Lot 241E, 629 Cedar Vela straat, Breda, Gelderland 6811 AA, Netherlands.
+
+\textbf{Positive:} Gita Gyamfi is a person living at 629 Cedar Vela straat, Lot 241E, Breda, Gelderland 6811 AA, Netherlands.
+
+\textbf{Negative:} Gita Gyamfi is a person living at Lot 241E, 629 Cedar Vela straat, Different City, Different Region.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9931 & 0.9250 & +0.0680 \\
+Fine-Tuned & 0.9613 & 0.6284 & +0.3328 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1756 --- Zoran Deshmukh (Mongolia)}
+
+\textbf{Anchor:} Zoran Deshmukh is a person living at Apartamento 238, 384 Seabird Mav Gudamj, Choibalsan, Orkhon 61020, Mongolia.
+
+\textbf{Positive:} Zoran Deshmukh is a person living at 384 Seabird Mav Gudamj, Apartamento 238, Choibalsan, Orkhon 61020, Mongolia.
+
+\textbf{Negative:} Zoran Deshmukh is a person living at Apartamento 238, 384 Seabird Mav Gudamj, Different City, Different Region.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9919 & 0.9141 & +0.0778 \\
+Fine-Tuned & 0.9316 & 0.5891 & +0.3425 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1768 --- Gita Gyamfi -- abbreviation variant (Netherlands)}
+
+\textbf{Anchor:} Gita Gyamfi is a person living at Lot 241E, 629 Cedar Vela straat, Breda, Gelderland 6811 AA, Netherlands.
+
+\textbf{Positive:} Gita Gyamfi is a person living at Lt 241E, 629 Cedar Vela straat, Breda, Gelderland 6811 AA, Netherlands.
+
+\textbf{Negative:} Gita Gyamfi is a person living at Unit 999, 123 Fake Street, Breda, Gelderland 6811 AA, Netherlands.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9852 & 0.9056 & +0.0796 \\
+Fine-Tuned & 0.9937 & 0.6649 & +0.3288 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1769 --- Tenzin Etxeberria (Belgium)}
+
+\textbf{Anchor:} Tenzin Etxeberria is a person living at Apartamento 480, 315 Sorrel Gra rue, Liege, Wallonia 5000, Belgium.
+
+\textbf{Positive:} Tenzin Etxeberria is a person living at Apartamento 480, 315 Sorrel Gra rue, Liege, Wallonia 5000, Belgium (exact match).
+
+\textbf{Negative:} Tenzin Etxeberria is a person living at Apartamento 480, 315 Sorrel Gra rue, Parana 80010-110, Brazil.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 1.0000 & 0.9198 & +0.0802 \\
+Fine-Tuned & 1.0000 & 0.6729 & +0.3271 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Row 1771 --- Mirela Haddad (France)}
+
+\textbf{Anchor:} Mirela Haddad is a person living at Lot 67C, 583 Anise Ivo rue, Nimes, Occitanie 31000, France.
+
+\textbf{Positive:} Mirela Haddad is a person living at 583 Anise Ivo rue, Lot 67C, Nimes, Occitanie 31000, France.
+
+\textbf{Negative:} Mirela Haddad is a person living at Lot 67C, 583 Anise Ivo rue, Different City, Different Region.
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+Stage & Pos. Similarity & Neg. Similarity & Gap \\
+\midrule
+Base Model & 0.9881 & 0.9191 & +0.0690 \\
+Fine-Tuned & 0.9379 & 0.6222 & +0.3157 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ------------------------------------------------------------
+% Summary and observations remain inside Appendix B
+% ------------------------------------------------------------
+
+\subsection{Average Discrimination Gap}
+
+Table~\ref{tab:gap-summary} summarizes the average discrimination gap across
+the representative business and person cases. The improvement is calculated
+as the difference between the fine-tuned and pretrained average gaps.
+
+\begin{table}[t]
+  \caption{Average discrimination gap for representative comparison cases.}
+  \label{tab:gap-summary}
+  \centering
+  \begin{tabular}{lccc}
+    \toprule
+    Model / Entity Type & Avg. Base Gap & Avg. FT Gap & Improvement \\
+    \midrule
+    all-MiniLM-L6-v2 / Business
+        & 0.0349 & 0.3999 & +0.3649 \\
+    all-MiniLM-L6-v2 / Person
+        & 0.0072 & 0.3511 & +0.3439 \\
+    BAAI/bge-base-en-v1.5 / Business
+        & 0.0688 & 1.2866 & +1.2178 \\
+    BAAI/bge-base-en-v1.5 / Person
+        & 0.0749 & 0.3294 & +0.2545 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Observations}
+
+The representative comparisons reveal several consistent patterns:
+
+\begin{itemize}
+    \item \textbf{Improved discrimination:}
+    Fine-tuning widens the positive--negative gap for every model and
+    entity-type group shown, indicating sharper discrimination between
+    true matches and near-duplicate distractors.
+
+    \item \textbf{Strongest effect for BGE business entities:}
+    The effect is largest for BAAI/bge-base-en-v1.5 on business entities.
+    In the representative cases, fine-tuned negative similarities drop
+    below zero, reaching values as low as $-0.35$, while the average gap
+    increases from approximately $0.069$ to $1.287$.
+
+    \item \textbf{Substantial improvement for MiniLM:}
+    For all-MiniLM-L6-v2, the average gap increases from approximately
+    $0.035$ to $0.400$ for business entities and from approximately
+    $0.007$ to $0.351$ for person entities.
+
+    \item \textbf{Correction of ranking failures:}
+    The base models can assign a higher similarity to the negative example
+    than to the true positive. For example, the MiniLM business case in
+    Row 1157 has a base gap of $-0.0170$, while the person cases in
+    Rows 1138, 1148, and 1176 have base gaps of $-0.0218$, $-0.0539$,
+    and $-0.0258$, respectively. Fine-tuning converts these cases into
+    positive gaps.
+
+    \item \textbf{Sensitivity to location conflicts:}
+    Several examples retain highly similar or identical names while
+    changing the business or residential location. The fine-tuned models
+    assign substantially lower similarity to these distractors, indicating
+    improved sensitivity to meaningful location differences.
+\end{itemize}
 
 \end{document}
